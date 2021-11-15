@@ -1,0 +1,39 @@
+# The services of the project.
+#
+# Each service listed will be deployed
+# to power your Platform.sh project.
+dbpostgres:
+    type: postgresql:13
+    disk: 1024
+    configuration:
+        databases:
+            - main
+            - legacy
+        endpoints:
+            admin:
+                privileges:
+                    main: admin
+                    legacy: admin
+            reporter:
+                default_database: main
+                privileges:
+                    main: ro
+            importer:
+                default_database: legacy
+                privileges:
+                    legacy: rw
+keycloack-database:
+    type: mariadb:10.4
+    disk: 1024
+#it's just to force a password to be generated
+    configuration:
+        schemas:
+            - main
+        endpoints:
+            mariadb:
+                default_schema: main
+                privileges:
+                    main: admin
+files:
+    type: network-storage:1.0
+    disk: 256        

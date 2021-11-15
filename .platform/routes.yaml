@@ -1,0 +1,16 @@
+# The routes of the project.
+#
+# Each route describes how an incoming URL is going
+# to be processed by Platform.sh.
+"https://{default}/":
+    type: upstream
+    upstream: "frontend:http"
+"https://api.{default}/":
+    type: upstream
+    upstream: "krakend:http"
+"https://keycloack.{default}/":
+    type: upstream
+    upstream: "keycloack:http"
+"https://vault.{default}/":
+  type: upstream
+  upstream: "vault:http"
