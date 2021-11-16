@@ -4,7 +4,7 @@ if [ ! -d "$PLATFORM_CACHE_DIR"/keycloak-$KC_VERSION ]; then
     echo "Downloading KeyCloak version ${KC_VERSION}..."
     (
         cd "$PLATFORM_CACHE_DIR"
-        curl -L -o $KC_VERSION.tar.gz https://downloads.jboss.org/user-management/$KC_VERSION/user-management-$KC_VERSION.tar.gz
+        curl -L -o $KC_VERSION.tar.gz https://downloads.jboss.org/user-management/$KC_VERSION/keycloak-$KC_VERSION.tar.gz
         tar -zxf $KC_VERSION.tar.gz
         rm -f $KC_VERSION.tar.gz
     )
