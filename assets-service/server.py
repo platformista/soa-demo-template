@@ -17,7 +17,7 @@ def root():
     hello = {"asset_01": "I am just an asset"}
     return flask.json.jsonify(hello)
 
-@app.route('liveness')
+@app.route('/liveness')
 def liveness():
     status = { "status": "live" }
     return flask.json.jsonify(status)
