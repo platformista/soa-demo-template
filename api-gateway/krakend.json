@@ -35,7 +35,7 @@
           "method": "GET",
           "extra_config": {},
           "host": [
-            "http://python-service.internal"
+            "http://assets-service.internal"
           ],
           "disable_host_sanitize": false
         }
@@ -90,12 +90,15 @@
           "encoding": "no-op",
           "sd": "static",
           "method": "GET",
-          "extra_config": {}
+          "extra_config": {},
+          "host": [
+            "http://settings-service.internal"
+          ]
         }
       ]
     },
     {
-      "endpoint": "/keycloack",
+      "endpoint": "/keycloak",
       "method": "GET",
       "output_encoding": "no-op",
       "extra_config": {},

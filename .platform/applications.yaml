@@ -37,24 +37,24 @@
     commands:
       start: ./krakend run -c krakend.json -d
   relationships:
-    settings-service: "settings-service-nodejs:http"
-    assets-service: "assets-service-python:http"
+    settings-service: "settings-service:http"
+    assets-service: "assets-service:http"
     golang-service: "golang-service:http"
     java-service: "java-service:http"
     keycloack: "keycloak:http"
     vault: "vault:http"
 # The settings service
-- name: settings-service-nodejs
+- name: settings-service
   source:
-    root: settings-service-nodejs
+    root: settings-service
   type: nodejs:14
   web:
     commands:
       start: node index.js
 # The assets service
-- name: assets-service-python
+- name: assets-service
   source:
-    root: assets-service-python
+    root: assets-service
   type: 'python:3.9'
   hooks:
     build: pip install -r requirements.txt
