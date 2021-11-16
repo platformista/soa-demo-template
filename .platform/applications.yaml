@@ -40,8 +40,8 @@
     settings-service: "settings-service:http"
     assets-service: "assets-service:http"
     golang-service: "golang-service:http"
-    java-service: "java-service:http"
-    keycloack: "keycloak:http"
+    java-service: "data-connector-service:http"
+    keycloack: "user-management-service:http"
     vault: "vault:http"
 # The settings service
 - name: settings-service
@@ -94,9 +94,9 @@
         commands:
             start: sleep infinity
 # Java service
-- name: java-service
+- name: data-connector-service
   source:
-    root: java-service
+    root: data-connector-service
   type: "java:11"
   disk: 512
   hooks:
@@ -105,10 +105,10 @@
     commands:
         start: java -jar -Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError -Djboss.http.port=$PORT target/app-wildfly.jar
 # Keycloak
-- name: 'keycloak'
+- name: 'user-management-service'
   type: 'java:11'
   source:
-      root: keycloak
+      root: user-management-service
   disk: 1024
   variables:
       env:

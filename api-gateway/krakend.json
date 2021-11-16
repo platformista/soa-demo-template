@@ -23,7 +23,7 @@
   "disable_rest": true,
   "endpoints": [
     {
-      "endpoint": "/python",
+      "endpoint": "/assets",
       "method": "GET",
       "output_encoding": "no-op",
       "extra_config": {},
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "endpoint": "/java",
+      "endpoint": "/data-connector",
       "method": "GET",
       "output_encoding": "no-op",
       "extra_config": {},
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "endpoint": "/nodejs",
+      "endpoint": "/settings",
       "method": "GET",
       "output_encoding": "no-op",
       "extra_config": {},
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "endpoint": "/keycloak",
+      "endpoint": "/user-management",
       "method": "GET",
       "output_encoding": "no-op",
       "extra_config": {},
@@ -108,7 +108,10 @@
           "encoding": "no-op",
           "sd": "static",
           "method": "GET",
-          "extra_config": {}
+          "extra_config": {},
+          "host": [
+            "http://user-management-service.internal"
+          ]
         }
       ]
     },
@@ -123,7 +126,10 @@
           "encoding": "no-op",
           "sd": "static",
           "method": "GET",
-          "extra_config": {}
+          "extra_config": {},
+          "host": [
+            "http://vault.internal"
+          ]
         }
       ]
     }

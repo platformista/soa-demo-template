@@ -10,7 +10,7 @@
     upstream: "api-gateway:http"
 "https://keycloack.{default}/":
     type: upstream
-    upstream: "keycloak:http"
+    upstream: "user-management-service:http"
 "https://vault.{default}/":
   type: upstream
   upstream: "vault:http"
