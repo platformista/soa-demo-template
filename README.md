@@ -8,36 +8,37 @@ In `.platform/applications.yaml`, we have
 
 * a single React app as a front end accessible at the apex
 * one API gateway written in NodeSJ that can proxy the other micro-services
-* 4 microservices, one in Go, one in Java, one in Python and one in NodeJS
-* a Keycloak instance
-* a Vault instance (depending on your usage pattern, we also have Vault as a managed service when used as a KMS)
-* two worker instances, one in Python and one in Go; these do nothing currently (their start command is simply `sleep`), but they show more topological options
-* a network storage instance accessible by the Python and Golang apps and workers
+* a Python service acting as "Assets Service"
+    * includes a worker instances in Python; this does nothing currently (their start command is simply `sleep`), but it
+      shows more topological options
+* a NodeJS service acting as "Settings Service"
+* a Java service acting as "Data/Connector Service"
+* a Keycloak (Java service) instance acting as "User Management" service
+* a Vault instance (depending on your usage pattern, Platform.sh also offer Vault as a managed service when used as a
+  KMS)
 
-Apps: `frontend`, `golang-service`, `java-service`, `keycloack`, `nodejs-service`, `nodejs-service-gateway`, `python-service`, `vault`, `python_queue_handler`, `go_queue_handler`
+In `.platform/services.yaml`, we have:
 
-Notes:
+- a PostgreSQL instance (as an example it is configured with two different schemas - and three "endpoints" or roles -
+  admin, reporter and importer),
+- a MariaDB instance (for Keycloak).
+- a network storage instance accessible by the Python and Golang apps and workers
+- a Redis instance
+- an ElasticSearch instance
 
-> The configuration of the internal routing of the gateway is in `nodejs-service-gateway/config/gateway.config.yml` but again, this is just a toy. In real life I am not at all sure this component will be needed. Potentially our Router has (or could have) enough functionality to actually replace it.
+And in `.platform/routes.yaml`:
 
-> We have sprinkled some relationships between apps and services, so it could be demonstrated that inter-service routing is opt-in.
+We expose public routes for the Frontend, the API gateway as well as for Vault and Keycloak:
 
-> In this example we put everything in a single Yaml file. But there are other options such as putting a `.platform.app.yaml` in the root of each app. 
+- `https://{default}/`
+- `https://api.{default}/`
+- `https://keycloack.{default}`
+- `https://vault.{default}/`
 
-In `.platform/services.yaml`: 
+## Notes
 
-There are two databases: 
-- one PostgreSQL (as an example it is configured with two different schemas - and three "endpoints" or roles - admin, reporter and importer), 
-- one MariaDB (for Keycloak).
+> The configuration of the internal routing of the gateway is in `api-gateway/krakend.json`. But, again, this is just a toy. In real life there is a possibility Platform.sh built-in Router Service could have enough functionality to replace it.
 
-Services: `dbpostgres`, `keycloak-database`
+> Relationships between apps and services have been added just so it could be demonstrated that inter-service routing is opt-in.
 
-And in `.platform/routes.yaml`: 
-
-We expose public routes for the Frontend, the API gateway as well as for Vault and Keycloak.
-Routes: 
-- "https://{default}/"
-- "https://api.{default}/"
-- "https://keycloack.{default}"
-- "https://vault.{default}/"
-
+> This example uses a single configuration file `applications.yaml` to set up the various apps, but there are other options that could be considered, such using a single `.platform.app.yaml` per application (in the root of each application's directory).
