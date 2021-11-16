@@ -54,7 +54,7 @@
           "method": "GET",
           "extra_config": {},
           "host": [
-            "http://java-service.internal"
+            "http://data-connector-service.internal"
           ],
           "disable_host_sanitize": false
         }

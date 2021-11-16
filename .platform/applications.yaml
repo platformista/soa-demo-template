@@ -40,7 +40,7 @@
     settings-service: "settings-service:http"
     assets-service: "assets-service:http"
     golang-service: "golang-service:http"
-    java-service: "data-connector-service:http"
+    data-connector-service: "data-connector-service:http"
     keycloack: "user-management-service:http"
     vault: "vault:http"
 # The settings service
