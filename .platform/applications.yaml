@@ -93,7 +93,7 @@
     go_queue_handler:
         commands:
             start: sleep infinity
-# Java service
+# Data Connector service
 - name: data-connector-service
   source:
     root: data-connector-service
@@ -104,7 +104,7 @@
   web:
     commands:
         start: java -jar -Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError -Djboss.http.port=$PORT target/app-wildfly.jar
-# Keycloak
+# User management service (Keycloak)
 - name: 'user-management-service'
   type: 'java:11'
   source:
