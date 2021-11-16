@@ -51,6 +51,8 @@
   web:
     commands:
       start: node index.js
+  relationships:
+    rediscache: 'redis:redis'
 # The assets service
 - name: assets-service
   source:
@@ -66,29 +68,13 @@
   relationships:
     database: "dbpostgres:admin"
     reports: "dbpostgres:reporter"
+    search: "es:elasticsearch"
   web:
     commands:
         start: python server.py
 # Python worker.
   workers:
     python_queue_handler:
-        commands:
-            start: sleep infinity
-# Go service
-- name: golang-service
-  source:
-    root: golang-service
-  type: golang:1.17
-  mounts:
-    'network_dir':
-        source: service
-        service: files
-        source_path: our_stuff
-  web:
-    commands:
-      start:  go run main.go
-  workers:
-    go_queue_handler:
         commands:
             start: sleep infinity
 # Data Connector service
