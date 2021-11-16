@@ -39,7 +39,6 @@
   relationships:
     settings-service: "settings-service:http"
     assets-service: "assets-service:http"
-    golang-service: "golang-service:http"
     data-connector-service: "data-connector-service:http"
     keycloack: "user-management-service:http"
     vault: "vault:http"
