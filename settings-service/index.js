@@ -6,7 +6,7 @@ const port = 8888;
 const server = http.createServer((req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
-    res.end('{"hello":"world"}');
+    res.end('{"setting_01":"I am just a setting"}');
 });
 
 server.listen(port, hostname, () => {
