@@ -61,25 +61,6 @@
       ]
     },
     {
-      "endpoint": "/golang",
-      "method": "GET",
-      "output_encoding": "json",
-      "extra_config": {},
-      "backend": [
-        {
-          "url_pattern": "/",
-          "encoding": "json",
-          "sd": "static",
-          "method": "GET",
-          "extra_config": {},
-          "host": [
-            "http://golang-service.internal"
-          ],
-          "disable_host_sanitize": false
-        }
-      ]
-    },
-    {
       "endpoint": "/settings",
       "method": "GET",
       "output_encoding": "no-op",
