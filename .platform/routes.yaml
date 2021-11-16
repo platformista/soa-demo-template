@@ -7,7 +7,7 @@
     upstream: "frontend:http"
 "https://api.{default}/":
     type: upstream
-    upstream: "krakend:http"
+    upstream: "api-gateway:http"
 "https://keycloack.{default}/":
     type: upstream
     upstream: "keycloak:http"

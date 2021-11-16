@@ -27,9 +27,9 @@
                 ^/robots\.txt$:
                     allow: true
 # A simple API gateway built with Krakend
-- name: krakend-api-gateway
+- name: api-gateway
   source:
-    root: krakend
+    root: api-gateway
   type: golang:1.17
   hooks:
     build: ./install.sh
@@ -43,15 +43,15 @@
     java-service: "java-service:http"
     keycloack: "keycloak:http"
     vault: "vault:http"
+# The settings service
 - name: settings-service-nodejs
   source:
     root: settings-service-nodejs
   type: nodejs:14
-  relationships:
-    reports: "dbpostgres:reporter"
   web:
     commands:
       start: node index.js
+# The assets service
 - name: assets-service-python
   source:
     root: assets-service-python
@@ -69,10 +69,12 @@
   web:
     commands:
         start: python server.py
+# Python worker.
   workers:
     python_queue_handler:
         commands:
             start: sleep infinity
+# Go service
 - name: golang-service
   source:
     root: golang-service
@@ -84,10 +86,6 @@
         source: service
         service: files
         source_path: our_stuff
-  relationships:
-    database: "dbpostgres:admin"
-    reports: "dbpostgres:reporter"
-    imports: "dbpostgres:importer"
   web:
     commands:
       start:  ./bin/app
@@ -95,6 +93,7 @@
     go_queue_handler:
         commands:
             start: sleep infinity
+# Java service
 - name: java-service
   source:
     root: java-service
@@ -105,6 +104,7 @@
   web:
     commands:
         start: java -jar -Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError -Djboss.http.port=$PORT target/app-wildfly.jar
+# Keycloak
 - name: 'keycloak'
   type: 'java:11'
   source:
@@ -142,6 +142,7 @@
       'standalone/tmp':
           source: local
           source_path: tmp
+# Vault. Platform.sh also support Vault as a managed service: https://docs.platform.sh/configuration/services/vault.html
 -   name: vault
     type: 'golang:1.15'
     source:
