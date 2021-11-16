@@ -10,7 +10,7 @@
     upstream: "krakend:http"
 "https://keycloack.{default}/":
     type: upstream
-    upstream: "keycloack:http"
+    upstream: "keycloak:http"
 "https://vault.{default}/":
   type: upstream
   upstream: "vault:http"

@@ -1,3 +1,4 @@
+# An example front-end application, built with React.
 - name: frontend
   source:
     root: frontend
@@ -25,7 +26,8 @@
                     allow: true
                 ^/robots\.txt$:
                     allow: true
-- name: krakend
+# A simple API gateway built with Krakend
+- name: krakend-api-gateway
   source:
     root: krakend
   type: golang:1.17
@@ -33,26 +35,26 @@
     build: ./install.sh
   web:
     commands:
-      start: ./krakend run -c krakend.json -d 
+      start: ./krakend run -c krakend.json -d
   relationships:
-    nodejs-service: "nodejs-service:http"
-    python-service: "python-service:http"
+    settings-service: "settings-service-nodejs:http"
+    assets-service: "assets-service-python:http"
     golang-service: "golang-service:http"
     java-service: "java-service:http"
-    keycloack: "keycloack:http"
+    keycloack: "keycloak:http"
     vault: "vault:http"
-- name: nodejs-service
+- name: settings-service-nodejs
   source:
-    root: nodejs-service
+    root: settings-service-nodejs
   type: nodejs:14
   relationships:
     reports: "dbpostgres:reporter"
   web:
     commands:
       start: node index.js
-- name: python-service
+- name: assets-service-python
   source:
-    root: python-service
+    root: assets-service-python
   type: 'python:3.9'
   hooks:
     build: pip install -r requirements.txt
@@ -103,10 +105,10 @@
   web:
     commands:
         start: java -jar -Xmx$(jq .info.limits.memory /run/config.json)m -XX:+ExitOnOutOfMemoryError -Djboss.http.port=$PORT target/app-wildfly.jar
-- name: 'keycloack'
+- name: 'keycloak'
   type: 'java:11'
   source:
-      root: keycloack
+      root: keycloak
   disk: 1024
   variables:
       env:
@@ -117,7 +119,7 @@
   hooks:
       build: ./build.sh
   relationships:
-      database: 'keycloack-database:mariadb'
+      database: 'keycloak-database:mariadb'
   web:
       commands:
           start: ./start.sh
@@ -146,7 +148,7 @@
         root: vault
     disk: 256
     hooks:
-        build: ./install.sh    
+        build: ./install.sh
     mounts:
         "/data":
             source: local
