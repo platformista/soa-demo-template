@@ -78,8 +78,6 @@
 - name: golang-service
   source:
     root: golang-service
-  hooks:
-      build: go build -o bin/app
   type: golang:1.17
   mounts:
     'network_dir':
@@ -88,7 +86,7 @@
         source_path: our_stuff
   web:
     commands:
-      start:  ./bin/app
+      start:  go run main.go
   workers:
     go_queue_handler:
         commands:
