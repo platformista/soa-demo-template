@@ -61,4 +61,4 @@ initialize:
   repository: git://github.com/vincenzo/alteryx-demo.git@main
   config: null
   files: []
-  profile: NodeJS
+  profile: Alteryx
