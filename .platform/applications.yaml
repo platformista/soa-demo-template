@@ -1,7 +1,7 @@
 # An example front-end application, built with React.
-- name: frontend
+- name: admin-fe
   source:
-    root: frontend
+    root: admin-fe
   type: nodejs:14
   build:
     flavor: none
