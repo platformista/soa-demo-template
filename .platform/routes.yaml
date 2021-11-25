@@ -5,6 +5,9 @@
 "https://{default}/":
     type: upstream
     upstream: "admin-fe:http"
+"https://settings.{default}/":
+  type: upstream
+  upstream: "settings-fe:http"
 "https://api.{default}/":
     type: upstream
     upstream: "api-gateway:http"
