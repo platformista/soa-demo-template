@@ -19,7 +19,7 @@ info:
   # Unique machine name, prefaced by a vendor or organization identifier.
   # The vendor should be the lowercase name of your company, organization, or project, and the project name
   # the lowercase name of the template. This may be the same as the vendor in a single-product case.
-  id: vincenzo/alteryx-demo-template
+  id: vincenzo/soa-demo-template
   # The human-readable name of the template.  This is how the template will be named in the user interface.
   name: A synthetic example that reproduces a use-case related to the Alteryx architecture.
   # Human-readable descriptive text for the template. Supports limited HTML.
@@ -58,7 +58,7 @@ info:
 # this key also gets mapped to the appropriate location in project.settings so
 # that the current UI can have its own workflow overridden as well.
 initialize:
-  repository: git://github.com/vincenzo/alteryx-demo-template.git@main
+  repository: git://github.com/vincenzo/soa-demo-template.git@main
   config: null
   files: []
   profile: Alteryx
