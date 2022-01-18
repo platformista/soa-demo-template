@@ -20,7 +20,7 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <h2>Alteryx estate status</h2>
+                <h2>SOA estate status</h2>
                 <div className="user-container">
                     <ul>
                         <li>
