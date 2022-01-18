@@ -1,10 +1,10 @@
 # Deploy To Platform
 
-<p align="center"><a href="https://console.platform.sh/projects/create-project/?template=https://github.com/vincenzo/alteryx-demo-template/blob/main/template-definition.yaml&utm_campaign=deploy_on_platform?utm_medium=button&utm_source=affiliate_links&utm_content=https://github.com/vincenzo/alteryx-demo-template/blob/main/template-definition.yaml" target="_blank" title="Deploy with Platform.sh"><img src="https://platform.sh/images/deploy/deploy-button-lg-blue.svg"></a></p>
+<p align="center"><a href="https://console.platform.sh/projects/create-project/?template=https://github.com/vincenzo/soa-demo-template/blob/main/template-definition.yaml&utm_campaign=deploy_on_platform?utm_medium=button&utm_source=affiliate_links&utm_content=https://github.com/vincenzo/soa-demo-template/blob/main/template-definition.yaml" target="_blank" title="Deploy with Platform.sh"><img src="https://platform.sh/images/deploy/deploy-button-lg-blue.svg"></a></p>
 
-# Alteryx Example
+# SOA Example
 
-This is a synthetic example that reproduces a use-case related to the Alteryx architecture.
+This is a synthetic example that reproduces a use-case related to a SOA architecture.
 
 In `.platform/applications.yaml`, we have
 
