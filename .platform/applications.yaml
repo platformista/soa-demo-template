@@ -26,6 +26,33 @@
                     allow: true
                 ^/robots\.txt$:
                     allow: true
+- name: settings-fe
+  source:
+    root: settings-fe
+  type: nodejs:14
+  build:
+    flavor: none
+  hooks:
+    build: |
+      yarn install
+      yarn build
+  dependencies:
+    nodejs:
+      yarn: "*"
+  web:
+    locations:
+      "/":
+        root: "build"
+        index:
+          - "index.html"
+        expires: 300s
+        scripts: true
+        allow: false
+        rules:
+          \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|html|ico|svg?)$:
+            allow: true
+          ^/robots\.txt$:
+            allow: true
 # A simple API gateway built with Krakend
 - name: api-gateway
   source:
